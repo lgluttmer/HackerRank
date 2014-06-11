@@ -1,6 +1,10 @@
 import sys
 write = sys.stdout.write
 
+# Constraints function
+def constraints(num, low_bound, high_bound):
+    return num < low_bound or num > high_bound
+
 # Function that determines if a number is even
 def isEven(number):
     return number % 2 == 0
@@ -28,12 +32,10 @@ my_list = my_list[1:len(my_list)]
 N = len(my_list) 
 
 # Check constraints and find tree height
-if T < 1 or T > 10 or N < 0 or N > 60:
-    print "Error. Input variables don't follow constraints."
-elif T > N:
-    print "Error. You have written too few testcases."
-elif T < N:
-    print "Error. You have written too many testcases."
+if constraints(T, 1, 10) or constraints(N, 0, 60):
+    sys.exit("Error. Input variables don't follow constraints.")
+elif constraints(T, N, N):
+    sys.exit("Error. Incorrect number of testcases.")
 else:
     for element in my_list[:]:
         print test(element)
